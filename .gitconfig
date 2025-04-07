@@ -1,0 +1,40 @@
+[alias]
+  st = status
+  co = checkout
+  cb = checkout -b
+  br = branch
+  brr = branch -r
+  cm = commit -m
+  ca = commit --amend
+  aa = add .
+  ap = add -p
+  unstage = reset HEAD --
+  rv = remote -v
+
+  ps = push
+  pl = pull
+  plr = pull --rebase
+  pf = push --force-with-lease
+
+  lg = log --oneline --graph --all --decorate
+  last = log -1 HEAD
+  hist = log --pretty=format:"%h | %an | %s" --graph
+
+  df = diff
+  dfs = diff --staged
+  dfl = diff HEAD~1
+
+  undo = reset --soft HEAD~1
+  discard = checkout --
+
+  sta = stash
+  stp = stash pop
+  stl = stash list
+
+  mrg = merge
+  rb = rebase
+
+  cl = clone
+  init = init
+  tag = tag
+  tags = tag -l
