@@ -1,4 +1,4 @@
-# 🧰 GIT
+# 🛠️ GIT
 
 ## 1. Cara Menghubungkan Git dengan GitHub
 
@@ -200,3 +200,20 @@ git lg        # log ringkas dengan graph
 File `.gitignore` digunakan untuk mengabaikan file/folder yang tidak perlu dimasukkan
 ke repo Git. Contoh: `node_modules/`, `.env`, `*.log`, dll. Ini penting agar repo
 tetap bersih dan ringan.
+
+---
+
+## 📚 Navigasi Lanjutan
+
+Untuk topik lanjutan, contoh kasus, dan panduan tambahan:
+
+- 📁 [examples/](./examples)
+
+  - [branching.md](./examples/branching.md)
+  - [merge-conflict.md](./examples/merge-conflict.md)
+  - [gitignore-explained.md](./examples/gitignore-explained.md)
+
+- 📁 [concepts/](./concepts)
+  - [branch-naming.md](./concepts/branch-naming.md)
+  - [rebase-vs-merge.md](./concepts/rebase-vs-merge.md)
+  - [rebase-best-practices.md](./concepts/rebase-best-practices.md)
