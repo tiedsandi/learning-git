@@ -194,3 +194,9 @@ git st        # git status
 git co main   # git checkout main
 git lg        # log ringkas dengan graph
 ```
+
+## 📁 .gitignore
+
+File `.gitignore` digunakan untuk mengabaikan file/folder yang tidak perlu dimasukkan
+ke repo Git. Contoh: `node_modules/`, `.env`, `*.log`, dll. Ini penting agar repo
+tetap bersih dan ringan.
