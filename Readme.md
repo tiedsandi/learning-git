@@ -1,103 +1,78 @@
-# 🛠️ GIT
+# 🧰 Git Documentation
 
-## 1. Cara Menghubungkan Git dengan GitHub
+> 📚 Dokumentasi Git dari dasar hingga kolaborasi tim.  
+> 💡 Langsung ke: [Quick Reference](#-quick-reference) |
+> [Navigasi Topik](#-navigasi-topik)
+
+---
+
+## 📁 Quick Reference
+
+### 1. Hubungkan Git ke GitHub
 
 ```bash
-git remote add origin <link>
+git remote add origin <url>
 # contoh:
 git remote add origin https://github.com/username/repo.git
 ```
 
-## 2. Cek Remote yang Sudah Terhubung
+### 2. Clone Repository
 
 ```bash
-git remote -v
+git clone <url>
 ```
 
-## 3. Clone Repository
-
-```bash
-git clone <link>
-# contoh:
-git clone https://github.com/username/repo.git
-```
-
-## 4. Menambahkan Perubahan ke Staging
+### 3. Tambah dan Commit Perubahan
 
 ```bash
 git add .
-# atau hanya file tertentu:
-git add nama_file.txt
+git commit -m "pesan"
 ```
 
-## 5. Commit Perubahan
+### 4. Push dan Pull
 
 ```bash
-git commit -m "pesan commit"
-```
-
-## 6. Push ke Remote
-
-```bash
-git push origin <nama-branch>
-# contoh:
 git push origin main
-```
-
-## 7. Pull Perubahan dari Remote
-
-```bash
-git pull origin <nama-branch>
-# contoh:
 git pull origin main
 ```
 
-## 8. Membuat Branch Baru dan Pindah Sekaligus
-
-```bash
-git checkout -b nama-branch
-```
-
-## 9. Ganti ke Branch Lain
-
-```bash
-git checkout nama-branch
-```
-
-## 10. Merge Branch
-
-```bash
-git checkout main
-git merge nama-branch
-```
-
-## 11. Cek Status dan Branch Saat Ini
+### 5. Cek Status dan Branch
 
 ```bash
 git status
 git branch
 ```
 
-## 12. Hapus Branch
+### 6. Buat dan Pindah Branch
 
 ```bash
-# local
-git branch -d nama-branch
-# remote
-git push origin --delete nama-branch
+git checkout -b fitur-baru
+git checkout main
 ```
 
-## 13. Menyimpan Perubahan Sementara (Stash)
+### 7. Merge Branch
 
 ```bash
-git stash
-# untuk lihat daftar stash:
-git stash list
-# ambil stash terakhir:
-git stash pop
+git checkout main
+git merge fitur-baru
 ```
 
-## 14. Ganti URL Remote
+### 8. Hapus Branch
+
+```bash
+git branch -d fitur-baru
+git push origin --delete fitur-baru
+```
+
+### 9. Git Stash
+
+```bash
+git stash          # simpan sementara
+git stash list     # lihat daftar
+git stash pop      # kembalikan
+```
+
+### 10. Ganti URL Remote
 
 ```bash
 git remote set-url origin <url-baru>
@@ -105,69 +80,55 @@ git remote set-url origin <url-baru>
 
 ---
 
-## 🐛 Kendala Umum dan Solusinya
+### 🐛 Masalah Umum
 
-### 1. Push Ditolak (non-fast-forward)
+#### ❌ Push Ditolak
 
 ```bash
-# Masalah:
-# error: failed to push some refs to ...
-
-# Solusi:
-git pull origin <branch> --rebase
-# lalu push ulang:
-git push origin <branch>
+git pull origin main --rebase
+git push origin main
 ```
 
-### 2. Terjadi Conflict saat Pull atau Merge
+#### ❌ Konflik Saat Merge / Pull
 
 ```bash
-# Buka file yang konflik (ada tanda <<<<<<< HEAD)
-# Edit secara manual, lalu:
-
+# Edit manual file konflik
 git add .
 git commit -m "resolve conflict"
 ```
 
-### 3. Commit di Branch yang Salah
+#### ❌ Commit di Branch yang Salah
 
 ```bash
-# Buat branch baru dari commit tersebut
-git branch nama-baru
-git checkout nama-baru
-
-# atau pindahkan commit pakai cherry-pick:
-git checkout branch-yang-benar
-git cherry-pick <commit-hash>
+git branch fitur-baru
+git checkout fitur-baru
+# atau:
+git checkout branch-benar
+git cherry-pick <hash>
 ```
 
-### 4. Lupa Tambah File ke .gitignore
+#### ❌ File Tertinggal di Git Ignore
 
 ```bash
-# Tambah file ke .gitignore
 nano .gitignore
-
-# Hapus file dari git tapi tetap ada secara lokal
 git rm --cached nama_file
 ```
 
 ---
 
-## 💡 Tips Penggunaan Git dalam Tim
+### 💡 Tips Kerja Tim
 
-- Selalu `git pull origin <branch>` sebelum mulai kerja.
-- Buat branch baru untuk setiap fitur/bugfix.
-- Commit sering dengan pesan yang jelas dan singkat.
-- Gunakan `.gitignore` untuk menghindari file tidak penting ikut ke repo.
-- Review sebelum push (`git diff`, `git status`).
-- Gunakan pull request dan code review sebelum merge ke `main`.
+- Tarik dulu perubahan: `git pull origin <branch>`
+- Buat branch untuk setiap fitur
+- Gunakan pesan commit yang jelas
+- Jangan commit `.env`, `node_modules/`, dll
+- Gunakan Pull Request sebelum merge ke `main`
 
 ---
 
-## ⚙️ Git Alias (Tambah ke .gitconfig)
+### ⚙️ Alias Git
 
-Untuk mempermudah penggunaan Git, bisa menambahkan alias berikut ke file
-`~/.gitconfig`:
+Tambahkan ke `~/.gitconfig`:
 
 ```ini
 [alias]
@@ -181,39 +142,111 @@ Untuk mempermudah penggunaan Git, bisa menambahkan alias berikut ke file
   undo = reset --soft HEAD~1
 ```
 
-> 💡 Cara edit:
+---
 
-```bash
-nano ~/.gitconfig
-```
+## 🧭 Navigasi Topik
 
-Setelah itu, kamu bisa jalankan Git dengan cara singkat seperti:
+### 📘 Git Dasar
 
-```bash
-git st        # git status
-git co main   # git checkout main
-git lg        # log ringkas dengan graph
-```
+- [Pengenalan Git](concepts/introduction.md)
+- [Konfigurasi Git](concepts/configuration.md)
+- [Staging & Commit](concepts/staging.md)
+- [Membatalkan Perubahan](concepts/undo-changes.md)
+- [Log & Hash](concepts/commit-log.md)
+- [Blame & Versi Sebelumnya](concepts/blame.md)
+- [Git Ignore](examples/gitignore-explained.md)
+- [Alias Git](concepts/alias.md)
 
-## 📁 .gitignore
+### 🌿 Branching
 
-File `.gitignore` digunakan untuk mengabaikan file/folder yang tidak perlu dimasukkan
-ke repo Git. Contoh: `node_modules/`, `.env`, `*.log`, dll. Ini penting agar repo
-tetap bersih dan ringan.
+- [Pengenalan Branch](concepts/branching-intro.md)
+- [Merge vs Rebase](concepts/rebase.md)
+- [Squash Commit](concepts/squash.md)
+- [Stash](concepts/stash.md)
+- [Cherry Pick](concepts/cherry-pick.md)
+- [Strategi Penamaan Branch](concepts/branch-naming.md)
+
+### ☁️ Git Remote
+
+- [Pengenalan Remote](concepts/remote-intro.md)
+- [Push, Pull, Clone](concepts/push-pull-clone.md)
+- [Fork dan Pull Request](concepts/fork.md)
+- [Submodule](concepts/submodule.md)
+- [Tag dan Rilis](concepts/tag.md)
+
+### 🧪 Studi Kasus
+
+- [Merge Conflict](examples/merge-conflict.md)
+- [Cherry Pick Demo](examples/cherry-pick-demo.md)
+- [Tag Penggunaan](examples/tag-usage.md)
+- [Stash di Dunia Nyata](concepts/stash.md)
+
+### 📦 Workflow Tim
+
+- [Gitflow Workflow](workflows/gitflow.md)
+- [Strategi Rebase](workflows/rebase-best-practices.md)
+- [Trunk Based Development](workflows/trunk-based.md)
+- [Forking Workflow](workflows/forking.md)
+- [Otomatisasi Rilis](workflows/release-automation.md)
 
 ---
 
-## 📚 Navigasi Lanjutan
+```sh
+git-guide/
+├── README.md                      # Panduan utama & navigasi
+├── .gitignore                     # Contoh ignore file
+├── .gitconfig                     # Contoh alias Git
+├── cheatsheet.md                 # Ringkasan perintah cepat
 
-Untuk topik lanjutan, contoh kasus, dan panduan tambahan:
+├── concepts/                     # 📘 Konsep dasar & teori Git
+│   ├── introduction.md                   # Pengenalan Git
+│   ├── configuration.md                  # Konfigurasi Git
+│   ├── repository.md                     # Inisialisasi repo Git
+│   ├── hash.md                           # Hash pada Git
+│   ├── staging.md                        # Menambah, mengubah, menghapus file
+│   ├── undo-changes.md                   # Membatalkan perubahan
+│   ├── commit-log.md                     # Commit log & histori
+│   ├── compare.md                        # Banding commit
+│   ├── rename.md                         # Rename file
+│   ├── reset.md                          # Reset commit
+│   ├── amend.md                          # Amend commit
+│   ├── snapshot.md                       # Revert & versi sebelumnya
+│   ├── ignore.md                         # .gitignore dan penjelasannya
+│   ├── blame.md                          # Git blame
+│   ├── alias.md                          # Git alias
 
-- 📁 [examples/](./examples)
+│   ├── branching-intro.md                # Pengenalan branching
+│   ├── multiple-branches.md              # Bekerja dengan banyak branch
+│   ├── merge.md                          # Merge branch
+│   ├── cherry-pick.md                    # Cherry pick
+│   ├── rebase.md                         # Rebase vs merge
+│   ├── squash.md                         # Squash commit
+│   ├── tag.md                            # Tag & versi
+│   ├── stash.md                          # Git stash
 
-  - [branching.md](./examples/branching.md)
-  - [merge-conflict.md](./examples/merge-conflict.md)
-  - [gitignore-explained.md](./examples/gitignore-explained.md)
+│   ├── remote-intro.md                   # Pengenalan Git remote
+│   ├── git-server.md                     # Apa itu Git server
+│   ├── git-server-repo.md                # Remote Git server repository
+│   ├── ssh.md                            # Autentikasi SSH
+│   ├── remote-repo.md                    # Remote repo: push, fetch, pull
+│   ├── push-pull-clone.md                # Push, Pull, Clone, Fetch
+│   ├── remote-branch.md                  # Remote branch & tracking
+│   ├── pull-request.md                   # Pull request dan kolaborasi
+│   ├── submodule.md                      # Git submodule
+│   ├── fork.md                           # Forking repo
 
-- 📁 [concepts/](./concepts)
-  - [branch-naming.md](./concepts/branch-naming.md)
-  - [rebase-vs-merge.md](./concepts/rebase-vs-merge.md)
-  - [rebase-best-practices.md](./concepts/rebase-best-practices.md)
+├── examples/                     # 🧪 Studi kasus & praktik langsung
+│   ├── branching.md                      # Workflow dasar branching
+│   ├── merge-conflict.md                 # Skenario dan solusi konflik
+│   ├── cherry-pick-demo.md               # Contoh cherry-pick nyata
+│   ├── rebase-squash-demo.md             # Contoh rebase + squash
+│   ├── tag-usage.md                      # Praktik penggunaan tag
+
+├── workflows/                    # 📂 Strategi & kolaborasi tim
+│   ├── branch-naming.md                 # Penamaan branch
+│   ├── gitflow.md                       # Gitflow Workflow
+│   ├── trunk-based.md                   # Trunk Based Development
+│   ├── forking-workflow.md              # Forking Workflow
+│   ├── rebase-best-practices.md         # Best practice rebase
+│   ├── release-automation.md            # CI/CD rilis otomatis (GitHub Actions)
+```
